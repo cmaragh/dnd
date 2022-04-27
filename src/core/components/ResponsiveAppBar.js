@@ -51,7 +51,7 @@ const ResponsiveAppBar = () => {
               },
             }}
           >
-            {`Dungeons & Dragons`}
+            {`Anything D&D`}
           </Typography>
 
           <Typography
@@ -64,7 +64,7 @@ const ResponsiveAppBar = () => {
               justifyContent: "center",
             }}
           >
-            {`Dungeons & Dragons`}
+            {`Anything D&D`}
           </Typography>
         </Toolbar>
       </Container>
