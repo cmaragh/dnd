@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import LandingPage from "./core/LandingPage";
+import ResponsiveAppBar from "./core/components/ResponsiveAppBar";
+import SearchContainer from "./core/SearchContainer";
+
+import { RecoilRoot } from "recoil";
+
+import "./App.css";
+import SearchResultCard from "./core/components/SearchResultCard";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RecoilRoot>
+      <div className="App">
+        <ResponsiveAppBar />
+        <SearchContainer />
+        <SearchResultCard />
+        <LandingPage />
+      </div>
+    </RecoilRoot>
   );
 }
 
