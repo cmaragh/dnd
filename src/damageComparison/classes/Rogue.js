@@ -1,12 +1,11 @@
-export class Ranger {
+export class Rogue {
   constructor(enemyAc, level, options) {
     this.level = level;
-    this.hasExtraAttack = !!options?.hasExtraAttack;
     this.advantageAttackOne = false;
     this.advantageAttackTwo = false;
     this.isRanged = !!options?.isRanged;
     this.hasSharpshooter = !!options?.hasSharpshooter;
-    this.hasColossalSlayer = !!options?.hasColossalSlayer;
+    this.hasSneakAttack = !!options?.hasSneakAttack;
     this.attackModifier = 5;
     this.proficiency = 5;
     this.toHit = this.attackModifier + this.proficiency;
@@ -19,7 +18,7 @@ export class Ranger {
   getTotalDamage() {
     let totalDamage = 0;
     this.applySharpshooter();
-    this.applyColossalSlayer();
+    this.applySneakAttack();
     totalDamage += this.getExpectedAttackDamage("ADVANTAGE");
 
     return totalDamage;
@@ -66,10 +65,9 @@ export class Ranger {
     }
   }
 
-  applyColossalSlayer() {
-    if (this.hasColossalSlayer) {
-      this.addedOneTimeAttackDamage += 4.5;
-      console.log("colossal");
+  applySneakAttack() {
+    if (this.hasSneakAttack) {
+      this.addedOneTimeAttackDamage += Math.ceil(this.level / 2) * 3.5;
     }
   }
 }

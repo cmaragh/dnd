@@ -24,3 +24,19 @@ export const rangerFilterDetails = [
     checked: true,
   },
 ];
+
+export const rogueFilterDetails = [
+    {
+      label: "Sneak Attack",
+      toggle: "hasSneakAttack",
+      default: true,
+      checked: true,
+    },
+    {
+      label: "Sharpshooter",
+      toggle: "hasSharpshooter",
+      default: false,
+      checked: false,
+    },
+  ];
+  

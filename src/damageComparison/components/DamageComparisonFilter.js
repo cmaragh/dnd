@@ -11,12 +11,26 @@ import { Grid } from "@mui/material";
 import { useRecoilState } from "recoil";
 import { damageComparisonDataState } from "../../atoms";
 
-import { rangerFilterDetails } from "../damageComparisonConstants";
+import {
+  rangerFilterDetails,
+  rogueFilterDetails,
+} from "../damageComparisonConstants";
 
 import { Ranger } from "../classes/Ranger";
+import { Rogue } from "../classes/Rogue";
 
-const DamageComparisonFilter = ({ characterClassSelection }) => {
-  const [state, setState] = useState(rangerFilterDetails);
+const DamageComparisonFilter = ({ selectedClass }) => {
+  const getClassFilterDetails = (selectedClass) => {
+    switch (selectedClass) {
+      case "Ranger":
+        return rangerFilterDetails;
+      case "Rogue":
+        return rogueFilterDetails;
+      default:
+        return [];
+    }
+  };
+  const [state, setState] = useState(getClassFilterDetails([]));
   const [characterNumber, setCharacterNumber] = useState(1);
 
   const [damageComparisonData, setDamageComparisonData] = useRecoilState(
@@ -28,6 +42,10 @@ const DamageComparisonFilter = ({ characterClassSelection }) => {
       setDamageComparisonData((oldData) => []);
     };
   }, []);
+
+  useEffect(() => {
+    setState(getClassFilterDetails(selectedClass));
+  }, [selectedClass]);
 
   const handleChange = (event) => {
     const updatedFilter = [...state];
@@ -101,9 +119,19 @@ const DamageComparisonFilter = ({ characterClassSelection }) => {
     state.forEach((feature) => {
       newCharacterOptions[`${feature.toggle}`] = feature.checked;
     });
-    const newCharacter = new Ranger(16, newCharacterOptions);
+    let newCharacter;
+    switch (selectedClass) {
+      case "Ranger":
+        newCharacter = new Ranger(16, 10, newCharacterOptions);
+        break;
+      case "Rogue":
+        newCharacter = new Rogue(16, 10, newCharacterOptions);
+        break;
+      default:
+        break;
+    }
     const newCharacterData = {
-      class: `#${characterNumber}: Ranger`,
+      class: `#${characterNumber}: ${selectedClass}`,
       damage: newCharacter.getTotalDamage(),
       features: "",
     };

@@ -24,3 +24,8 @@ export const damageComparisonDataState = atom({
   key: "damageComparisonDataState",
   default: [],
 });
+
+export const selectedClassState = atom({
+  key: "selectedClassState",
+  default: {},
+});

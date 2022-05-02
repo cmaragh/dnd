@@ -4,10 +4,10 @@ import { Grid, Typography } from "@mui/material";
 import DamageComparisonFilter from "./DamageComparisonFilter";
 
 const DamageComparisonSelector = () => {
-  const [selectedValue, setSelectedValue] = React.useState("a");
+  const [selectedClass, setSelectedClass] = React.useState("");
 
   const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+    setSelectedClass(event.target.value);
   };
 
   return (
@@ -21,17 +21,17 @@ const DamageComparisonSelector = () => {
           }}
         >
           <Radio
-            checked={selectedValue === "a"}
+            checked={selectedClass === "Ranger"}
             onChange={handleChange}
-            value="a"
+            value="Ranger"
             name="radio-buttons"
             inputProps={{ "aria-label": "A" }}
           />
           <Typography>Ranger</Typography>
           <Radio
-            checked={selectedValue === "b"}
+            checked={selectedClass === "Rogue"}
             onChange={handleChange}
-            value="b"
+            value="Rogue"
             name="radio-buttons"
             inputProps={{ "aria-label": "B" }}
           />
@@ -39,7 +39,7 @@ const DamageComparisonSelector = () => {
         </div>
       </Grid>
       <Grid item xs={12}>
-        <DamageComparisonFilter />
+        <DamageComparisonFilter selectedClass={selectedClass} />
       </Grid>
     </Grid>
   );
