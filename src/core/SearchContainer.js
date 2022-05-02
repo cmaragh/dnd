@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import SearchBar from "./components/SearchBar";
@@ -11,16 +11,9 @@ import SearchList from "./components/SearchList";
 // import "./Transitions.css";
 
 const SearchContainer = () => {
-  const [isContainerShown, setIsContainerShown] = useState(false);
 
   const searchOption = useRecoilValue(searchOptionState);
   const [spellList, setSpellList] = useRecoilState(spellListState);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsContainerShown(true);
-    }, 6000);
-  }, []);
 
   const GET_SPELL_LIST_QUERY = `
   {
@@ -55,7 +48,7 @@ const SearchContainer = () => {
       className="slit-in-vertical"
       sx={{
         flexGrow: 1,
-        display: isContainerShown ? "flex" : "none",
+        display: "flex",
         padding: "20px",
       }}
     >

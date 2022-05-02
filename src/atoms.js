@@ -19,3 +19,8 @@ export const searchResultState = atom({
   key: "searchResultState",
   default: null,
 });
+
+export const damageComparisonDataState = atom({
+  key: "damageComparisonDataState",
+  default: [],
+});
